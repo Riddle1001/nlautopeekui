@@ -1,0 +1,69 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="litegraph.css">
+	<script type="text/javascript" src="litegraph.js"></script>
+</head>
+<body style='width:100%; height:100%'>
+<canvas id='mycanvas'  width="100%" height="100%" style='border: 1px solid'></canvas>
+<script>
+
+// set bg of canvas to red.
+var canvas = document.getElementById('mycanvas');
+canvas.style.backgroundColor = '#333';
+
+var graph = new LGraph();
+graph.color = "rgb(0,0,255)";
+
+var canvas = new LGraphCanvas("#mycanvas", graph);
+
+window.addEventListener("resize", function() {
+    canvas.resize(window.innerWidth, window.innerHeight);
+});
+
+canvas.resize(window.innerWidth, window.innerHeight);
+
+
+function equal_node()
+{
+  this.addInput("A","number");
+  this.addInput("B","number");
+  this.addOutput("A+B","number");
+  this.properties = { precision: 1 };
+}
+
+//name to show
+equal_node.title = "Equal Comparison";
+
+//function to call when the node is executed
+equal_node.prototype.onExecute = function(){
+    var A = this.getInputData(0);
+    if( A === undefined )
+    A = 0;
+    var B = this.getInputData(1);
+    if( B === undefined )
+    B = 0;
+    out = A == B 
+
+    this.setOutputData( 0, out);
+
+    this.bgcolor = out ? "rgb(0,50,0)" : "rgb(255,0,0)";
+  
+}
+
+LiteGraph.registerNodeType("basic/eq", equal_node );
+var node_watch = LiteGraph.createNode("basic/eq");
+graph.add(node_watch);
+var node_const = LiteGraph.createNode("basic/const");
+
+setInterval(function(){
+    node_const.setValue(12);
+},1);
+
+graph.add(node_const);
+
+
+
+graph.start()
+</script>
+</body>
+</html>
