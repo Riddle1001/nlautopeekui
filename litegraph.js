@@ -404,6 +404,9 @@
             }
         },
 
+
+        onCreateNode: function(type, title, options) {},
+
         /**
          * Create a node of a given type with a name. The node is not attached to any graph yet.
          * @method createNode
@@ -474,9 +477,8 @@
 
 			// callback
             if ( node.onNodeCreated ) {
-                node.onNodeCreated();
+                node.onNodeCreated(node);
             }
-            
             return node;
         },
 
@@ -15761,9 +15763,16 @@ if (typeof exports != "undefined") {
                     break;
             }
         }
-        this.setOutputData(0, result);
-        this.setOutputData(1, !result);
-    };
+        if (A && B) {
+            if (result) {
+                this.bgcolor = "rgba(0,100,0)"
+            }else{
+                this.bgcolor = "rgba(100,0,0)"
+            }
+            this.setOutputData(0, result);
+            this.setOutputData(1, !result);
+        };
+    }
 
     LiteGraph.registerNodeType("basic/CompareValues", GenericCompare);
     
@@ -18210,6 +18219,8 @@ if (typeof exports != "undefined") {
                     value = A >= B;
                     break;
             }
+
+           
             this.setOutputData(i, value);
         }
     };
