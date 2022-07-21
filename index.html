@@ -1,4 +1,4 @@
-<html>
+<html class="">
 <head>
 	<link rel="stylesheet" type="text/css" href="litegraph.css">
 	<script type="text/javascript" src="litegraph.js"></script>
@@ -70,94 +70,66 @@ body {
   
 }
 
-.seperator-wrapper {
-  width: 100%;  
- 
-  
-}
-.seperator {
-    width: 3000px;
-    height: 5px;
-    animation: rotate 3s infinite linear;
-    -webkit-animation: rotate 3s infinite linear;
-  }
-@-webkit-keyframes rotate {
-  from {
-    background-position: -3000px;
-  }
-  to { 
-    background-position: 0px;
-  }
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(42, 42, 42);
 }
 
-@keyframes rotate {
-  from {
-    background-position: -3000px;
-  }
-  to { 
-    background-position: 0px;
-  }
-}
-
-.gradient {
-  background: rgb(48,255,144); /* Old browsers */
-background: -moz-linear-gradient(left,  rgba(48,255,144,1) 0%, rgba(237,45,237,1) 25%, rgba(201,152,38,1) 50%, rgba(48,255,230,1) 75%, rgba(48,255,144,1) 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(48,255,144,1)), color-stop(25%,rgba(237,45,237,1)), color-stop(50%,rgba(201,152,38,1)), color-stop(75%,rgba(48,255,230,1)), color-stop(100%,rgba(48,255,144,1))); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(left,  rgba(48,255,144,1) 0%,rgba(237,45,237,1) 25%,rgba(201,152,38,1) 50%,rgba(48,255,230,1) 75%,rgba(48,255,144,1) 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(left,  rgba(48,255,144,1) 0%,rgba(237,45,237,1) 25%,rgba(201,152,38,1) 50%,rgba(48,255,230,1) 75%,rgba(48,255,144,1) 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(left,  rgba(48,255,144,1) 0%,rgba(237,45,237,1) 25%,rgba(201,152,38,1) 50%,rgba(48,255,230,1) 75%,rgba(48,255,144,1) 100%); /* IE10+ */
-background: linear-gradient(to right,  rgba(48,255,144,1) 0%,rgba(237,45,237,1) 25%,rgba(201,152,38,1) 50%,rgba(48,255,230,1) 75%,rgba(48,255,144,1) 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#30ff90', endColorstr='#30ff90',GradientType=1 ); /* IE6-9 */
-}
-
-.rainbow-btn {
-  background: transparent;
-  border: none;
-  font-size: 18px;
-  color: white;
-  position: relative;
-  top: 250px;
-  left: 250px;
-  padding: 15px 30px;
-  overflow: hidden;
-}
-
-.rainbow-btn::before {
-  content: "";
-  position: absolute;
-  z-index: -2;
+.contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 300px;
   height: 300px;
-  top: calc(50% - 150px);
-  left: calc(50% - 150px);
-  background: conic-gradient(red, orange, yellow, green, aqua, blue, purple, red);
-  border-radius: 50%;
-  animation-duration: 3s;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+@keyframes rainbow-gradient {
+  0% {transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}
+}
+
+.contenedor::before {
+  content: '';
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  z-index: 1;
+  background-image: conic-gradient(red, orange, yellow, green, cyan, blue, purple, pink, red);
+  animation-name: rainbow-gradient;
+  animation-duration: 4s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
-  animation-name: rotate;
 }
 
-.rainbow-btn::after {
-  content: "";
+.contenedor::after {
+  content: '';
   position: absolute;
-  z-index: -1;
-  top: 5px;
-  left: 5px;
-  width: calc(100% - 10px);
-  height: calc(100% - 10px);
-  background: black;
+  width: 96%;
+  height: 96%;
+  z-index: 2;
+  background-color: rgb(42, 42, 42);
+  border-radius: 10px;
 }
 
-@keyframes rotate {
-  from { transform: rotate(0deg) }
-  to { transform: rotate(360deg) }
+.contenedor span {
+  color: white;
+  position: relative;
+  z-index: 3;
+  font-size: 3em;
 }
 
     </style>
 </head>
 
-    <body style='margin: 0; padding: 0; background-color: black;'>
+    <body style='margin: 0; padding: 0; background-color: black;' class="">
 
         <img src="Untitled.png" class="tesla_logo">
         <nav class="navbar  navbar-expand-sm" style="background: black; border-bottom: 1px solid white; border-top: 1px solid white; margin-left: 6px; margin-right: 6px;">
@@ -182,7 +154,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#30ff90', end
             </div>
           </section>
 
-          <button class="rainbow-btn" type="button">Rainbow Button</button>
+          <div class="contenedor">
+            <span>Rainbow</span>
+          </div>
 
         
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
