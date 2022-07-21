@@ -110,32 +110,49 @@ background: linear-gradient(to right,  rgba(48,255,144,1) 0%,rgba(237,45,237,1) 
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#30ff90', endColorstr='#30ff90',GradientType=1 ); /* IE6-9 */
 }
 
-div {
-	height: 50vmin;
-	border: 10vmin solid;
-	border-image: -moz-conic-gradient(from var(--angle), red, yellow, lime, aqua, blue, magenta, red) 1;
-    border-image: -webkit-gradient(conic-gradient(from var(--angle), red, yellow, lime, aqua, blue, magenta, red)) 1;
-    border-image: -webkit-conic-gradient(from var(--angle), red, yellow, lime, aqua, blue, magenta, red) 1;
-    border-image: -o-conic-gradient(from var(--angle), red, yellow, lime, aqua, blue, magenta, red) 1;
-    border-image: -ms-conic-gradient(from var(--angle), red, yellow, lime, aqua, blue, magenta, red) 1;
-    border-image: conic-gradient(from var(--angle), red, yellow, lime, aqua, blue, magenta, red) 1;
-    
-	animation: 10s rotate linear infinite;
+.rainbow-btn {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: white;
+  position: relative;
+  top: 250px;
+  left: 250px;
+  padding: 15px 30px;
+  overflow: hidden;
+}
+
+.rainbow-btn::before {
+  content: "";
+  position: absolute;
+  z-index: -2;
+  width: 300px;
+  height: 300px;
+  top: calc(50% - 150px);
+  left: calc(50% - 150px);
+  background: conic-gradient(red, orange, yellow, green, aqua, blue, purple, red);
+  border-radius: 50%;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-name: rotate;
+}
+
+.rainbow-btn::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 5px;
+  left: 5px;
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+  background: black;
 }
 
 @keyframes rotate {
-	to {
-		--angle: 360deg;
-	}
+  from { transform: rotate(0deg) }
+  to { transform: rotate(360deg) }
 }
-
-@property --angle {
-  syntax: '<angle>';
-  initial-value: 0deg;
-  inherits: false;
-}
-
-
 
     </style>
 </head>
@@ -164,7 +181,8 @@ div {
             <div class="seperator gradient">
             </div>
           </section>
-          
+
+          <button class="rainbow-btn" type="button">Rainbow Button</button>
 
         
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
