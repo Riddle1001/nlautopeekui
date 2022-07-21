@@ -110,6 +110,41 @@ background: linear-gradient(to right,  rgba(48,255,144,1) 0%,rgba(237,45,237,1) 
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#30ff90', endColorstr='#30ff90',GradientType=1 ); /* IE6-9 */
 
 }
+
+div {
+	--angle: 0deg;
+	width: 50vmin;
+	height: 50vmin;
+	border: 10vmin solid;
+	border-image: conic-gradient(from var(--angle), red, yellow, lime, aqua, blue, magenta, red) 1;
+	
+	animation: 2s rotate linear infinite;
+}
+
+@keyframes rotate {
+	to {
+		--angle: 360deg;
+	}
+}
+
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+
+
+body {
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+	width: 100vw;
+	display: grid;
+	place-items: center;
+	background: #fff;
+}
+
     </style>
 </head>
 
