@@ -108,17 +108,19 @@ background: -o-linear-gradient(left,  rgba(48,255,144,1) 0%,rgba(237,45,237,1) 2
 background: -ms-linear-gradient(left,  rgba(48,255,144,1) 0%,rgba(237,45,237,1) 25%,rgba(201,152,38,1) 50%,rgba(48,255,230,1) 75%,rgba(48,255,144,1) 100%); /* IE10+ */
 background: linear-gradient(to right,  rgba(48,255,144,1) 0%,rgba(237,45,237,1) 25%,rgba(201,152,38,1) 50%,rgba(48,255,230,1) 75%,rgba(48,255,144,1) 100%); /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#30ff90', endColorstr='#30ff90',GradientType=1 ); /* IE6-9 */
-
 }
 
 div {
-	--angle: 0deg;
-	width: 50vmin;
 	height: 50vmin;
 	border: 10vmin solid;
-	border-image: conic-gradient(from var(--angle), red, yellow, lime, aqua, blue, magenta, red) 1;
-	
-	animation: 2s rotate linear infinite;
+	border-image: -moz-conic-gradient(from var(--angle), red, yellow, lime, aqua, blue, magenta, red) 1;
+    border-image: -webkit-gradient(conic-gradient(from var(--angle), red, yellow, lime, aqua, blue, magenta, red)) 1;
+    border-image: -webkit-conic-gradient(from var(--angle), red, yellow, lime, aqua, blue, magenta, red) 1;
+    border-image: -o-conic-gradient(from var(--angle), red, yellow, lime, aqua, blue, magenta, red) 1;
+    border-image: -ms-conic-gradient(from var(--angle), red, yellow, lime, aqua, blue, magenta, red) 1;
+    border-image: conic-gradient(from var(--angle), red, yellow, lime, aqua, blue, magenta, red) 1;
+    
+	animation: 10s rotate linear infinite;
 }
 
 @keyframes rotate {
@@ -132,8 +134,6 @@ div {
   initial-value: 0deg;
   inherits: false;
 }
-
-
 
 
 
